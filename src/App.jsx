@@ -122,35 +122,6 @@ export default function App() {
             </Text>
           </Billboard>
         </RigidBody>
-        <RigidBody type="fixed" position={[5, 0, 0]}>
-          <mesh
-            onClick={() =>
-              window.open(
-                "https://drive.google.com/file/d/1u3fPmkwKC03ZJMQS6BV5goDeWtKeTFfh/view?usp=sharing",
-                "_blank"
-              )
-            }
-            onPointerOver={(e) => {
-              e.object.material.color.set("crimson");
-              document.body.style.cursor = "pointer";
-            }}
-            onPointerOut={(e) => {
-              e.object.material.color.set("red");
-              document.body.style.cursor = "default";
-            }}>
-            <sphereGeometry args={[1, 32, 32]} />
-            <meshStandardMaterial color="red" />
-          </mesh>
-          <Billboard>
-            <Text
-              font={font}
-              position={[0, 1.5, 0]}
-              textAlign="center"
-              fontSize={0.3}>
-              CV
-            </Text>
-          </Billboard>
-        </RigidBody>
       </Physics>
 
       <EffectComposer>
