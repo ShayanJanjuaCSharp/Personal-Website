@@ -11,6 +11,7 @@ import { Text } from "@react-three/drei";
 import { useFont } from "@react-three/drei";
 import { MeshStandardMaterial } from "three";
 import { useEffect, useState } from "react";
+import "./App.css";
 export default function App() {
   const [name, setname] = useState("SHAYAN ISHAQ JANJUA");
   const font = useFont.preload("/fonts/outfit.json");
@@ -32,7 +33,7 @@ export default function App() {
   return (
     <>
       <Canvas
-        style={{ width: "100vw", height: "100vh", background: "#000" }}
+        style={{ width: "100vw", height: "100vh", background: "#fffced" }}
         camera={{
           position: [0, 0, 10],
           fov: 70,
@@ -46,9 +47,7 @@ export default function App() {
             enabledRotations={[true, true, false]}
             enabledTranslations={[true, true, false]}
             position={[0, 0, 0]}>
-            <Text textAlign="center" font={font}>
-              {name}
-            </Text>
+            <Text textAlign="center" font={font} color="#000005"></Text>
             <mesh>
               <boxGeometry args={[1, 1, 1]} />
               <meshPhysicalMaterial visible={false} />
@@ -74,13 +73,44 @@ export default function App() {
             top: "50%",
             left: "50%",
             transform: "translate(-50%, -50%)",
-            color: "blue",
-            fontSize: "48px",
+            fontSize: "4vw",
+            margin: 0,
+            padding: 0,
+            alignContent: "center",
+            display: "grid",
           }}>
-          Overlay Text
+          <div
+            style={{
+              gridColumn: 1,
+              gridRow: 1,
+            }}>
+            <p
+              style={{
+                position: "relative",
+                zIndex: 1,
+              }}
+              className="name">
+              SHAYAN ISHAQ JANJUA
+            </p>
+          </div>
+          <div
+            style={{
+              gridColumn: 1,
+              gridRow: 1,
+            }}>
+            <p
+              style={{
+                position: "relative",
+                zIndex: 0,
+                fontFamily: "cutive",
+                textAlign: "left",
+              }}
+              className="name2">
+              SIJ
+            </p>
+          </div>
         </div>
       </div>
-      <p>{name}</p>
     </>
   );
 }

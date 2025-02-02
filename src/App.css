@@ -1,46 +1,62 @@
 #root {
   max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
   text-align: center;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
+.name {
+  border-right: 3px solid;
+  border-width: 0.01em;
+  border-color: transparent;
+  width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  animation: typing 7s steps(19) forwards,
+    cursor 0.5s step-end alternate infinite, stop 0.5s step-end forwards 9s;
+  font-family: cutive;
+  line-height: 1em;
 }
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+.name2 {
+  border-right: 3px solid;
+  border-color: transparent;
+  border-width: 0.01em;
+  width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  animation: typingReverse 3s steps(3) forwards 9s,
+    cursor 0.5s step-end alternate infinite 9s, stop 0.5s step-end forwards 12s;
+  font-family: cutive;
+  line-height: 1em;
+  width: 0;
 }
 
-@keyframes logo-spin {
+@keyframes cursor {
+  50% {
+    border-color: #000005;
+  }
+}
+@keyframes typing {
   from {
-    transform: rotate(0deg);
+    width: 100%;
   }
   to {
-    transform: rotate(360deg);
+    width: 0%;
+  }
+}
+@keyframes typingReverse {
+  from {
+    width: 0;
+  }
+  to {
+    width: 15%;
+  }
+}
+@keyframes stop {
+  to {
+    border-color: transparent;
   }
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+@font-face {
+  font-family: cutive;
+  src: url(./fonts/CutiveMono-Regular.ttf);
 }
-
-.card {
-  padding: 2em;
-}
-
-.read-the-docs {
-  color: #888;
-}
-
-/*.name {
-  color: #61dafb;
-}*/
