@@ -102,7 +102,6 @@ export default function App() {
               style={{
                 position: "relative",
                 zIndex: 0,
-                fontFamily: "cutive",
                 textAlign: "left",
               }}
               className="name2">

@@ -12,7 +12,7 @@
   overflow: hidden;
   animation: typing 7s steps(19) forwards,
     cursor 0.5s step-end alternate infinite, stop 0.5s step-end forwards 9s;
-  font-family: cutive;
+  font-family: jbbold;
   line-height: 1em;
 }
 .name2 {
@@ -24,7 +24,7 @@
   overflow: hidden;
   animation: typingReverse 3s steps(3) forwards 9s,
     cursor 0.5s step-end alternate infinite 9s, stop 0.5s step-end forwards 12s;
-  font-family: cutive;
+  font-family: jbbold;
   line-height: 1em;
   width: 0;
 }
@@ -59,4 +59,49 @@
 @font-face {
   font-family: cutive;
   src: url(./fonts/CutiveMono-Regular.ttf);
+}
+
+@font-face {
+  font-family: jbthin;
+  src: url(./fonts/JetBrainsMono-Thin.ttf);
+}
+
+@font-face {
+  font-family: jbregular;
+  src: url(./fonts/JetBrainsMono-Regular.ttf);
+}
+
+@font-face {
+  font-family: jbmedium;
+  src: url(./fonts/JetBrainsMono-Medium.ttf);
+}
+
+@font-face {
+  font-family: jbbold;
+  src: url(./fonts/JetBrainsMono-Bold.ttf);
+}
+
+@font-face {
+  font-family: jblight;
+  src: url(./fonts/JetBrainsMono-Light.ttf);
+}
+
+@font-face {
+  font-family: jbxb;
+  src: url(./fonts/JetBrainsMono-ExtraBold.ttf);
+}
+
+@font-face {
+  font-family: jbxlight;
+  src: url(./fonts/JetBrainsMono-ExtraLight.ttf);
+}
+
+@font-face {
+  font-family: jbssemi;
+  src: url(./fonts/JetBrainsMono-SemiBold.ttf);
+}
+
+use {
+  https: //www.realtimecolors.com/?colors=000005-fffced-5988d4-db4848-a3a1e2&fonts=JetBrains%20Mono-JetBrains%20Mono
+;
 }
