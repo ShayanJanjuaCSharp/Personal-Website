@@ -1,4 +1,9 @@
-import { Billboard, OrbitControls, ScrollControls } from "@react-three/drei";
+import {
+  Billboard,
+  OrbitControls,
+  Scroll,
+  ScrollControls,
+} from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
 import { Physics, RigidBody } from "@react-three/rapier";
 import { Bloom, EffectComposer } from "@react-three/postprocessing";
@@ -12,6 +17,7 @@ import { useFont } from "@react-three/drei";
 import { MeshStandardMaterial } from "three";
 import { useEffect, useState } from "react";
 import "./App.css";
+import { viewport } from "three/tsl";
 export default function App() {
   const [name, setname] = useState("SHAYAN ISHAQ JANJUA");
   const font = useFont.preload("/fonts/jbsb.json");
@@ -27,26 +33,28 @@ export default function App() {
           far: 1000,
         }}>
         <ScrollControls pages={5}>
-          <Physics gravity={[0, 0, 0]}>
-            <RigidBody
-              colliders="hull"
-              type="dynamic"
-              enabledRotations={[true, true, false]}
-              enabledTranslations={[true, true, false]}
-              position={[0, 0, 0]}>
-              <Text
-                textAlign="center"
-                font={"fonts/JetBrainsMono-Regular.ttf"}
-                color="#000005">
-                SHAYAN ISHAQ JANJUA
-              </Text>
+          <Scroll>
+            <Physics gravity={[0, 0, 0]}>
+              <RigidBody
+                colliders="hull"
+                type="dynamic"
+                enabledRotations={[true, true, false]}
+                enabledTranslations={[true, true, false]}
+                position={[0, 0, 0]}>
+                <Text
+                  textAlign="center"
+                  font={"fonts/JetBrainsMono-Regular.ttf"}
+                  color="#000005">
+                  SHAYAN ISHAQ JANJUA
+                </Text>
 
-              <mesh>
-                <boxGeometry args={[1, 1, 1]} />
-                <meshPhysicalMaterial visible={false} />
-              </mesh>
-            </RigidBody>
-          </Physics>
+                <mesh>
+                  <boxGeometry args={[1, 1, 1]} />
+                  <meshPhysicalMaterial visible={false} />
+                </mesh>
+              </RigidBody>
+            </Physics>
+          </Scroll>
         </ScrollControls>
       </Canvas>
 
