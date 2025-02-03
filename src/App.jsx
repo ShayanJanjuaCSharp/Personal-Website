@@ -15,20 +15,7 @@ import "./App.css";
 export default function App() {
   const [name, setname] = useState("SHAYAN ISHAQ JANJUA");
   const font = useFont.preload("/fonts/outfit.json");
-  /*useEffect(() => {
-    const typing = () => {
-      if (name.length > 0) {
-        if (name[1] === "|") {
-          setname = "|";
-        } else {
-          setname(name.slice(0, -1) + "|");
-        }
-      }
-    };
-    if (name.length > 1) {
-      typing();
-    }
-  }, name);*/
+
 
   return (
     <>
