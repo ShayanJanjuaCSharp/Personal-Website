@@ -14,8 +14,7 @@ import { useEffect, useState } from "react";
 import "./App.css";
 export default function App() {
   const [name, setname] = useState("SHAYAN ISHAQ JANJUA");
-  const font = useFont.preload("/fonts/outfit.json");
-
+  const font = useFont.preload("/fonts/jbsb.json");
 
   return (
     <>
@@ -27,14 +26,20 @@ export default function App() {
           near: 0.1,
           far: 1000,
         }}>
-        <Physics gravity={[0, 9.81, 0]}>
+        <Physics gravity={[0, 0, 0]}>
           <RigidBody
             colliders="hull"
             type="dynamic"
             enabledRotations={[true, true, false]}
             enabledTranslations={[true, true, false]}
             position={[0, 0, 0]}>
-            <Text textAlign="center" font={font} color="#000005"></Text>
+            <Text
+              textAlign="center"
+              font={"fonts/JetBrainsMono-Regular.ttf"}
+              color="#000005">
+              SHAYAN ISHAQ JANJUA
+            </Text>
+
             <mesh>
               <boxGeometry args={[1, 1, 1]} />
               <meshPhysicalMaterial visible={false} />
@@ -51,9 +56,34 @@ export default function App() {
           left: 0,
           width: "100vw",
           height: "100vh",
-          pointerEvents: "none",
           zIndex: 0,
         }}>
+        <div
+          className="menu"
+          style={{
+            position: "absolute",
+            top: "3%",
+            right: "3%",
+            direction: "rtl",
+            fontFamily: "jbbold",
+            backgroundColor: "#fffced",
+            width: "40%",
+          }}>
+          <button
+            className="menuitems"
+            onClick={() =>
+              window.open(
+                "https://drive.google.com/file/d/1u3fPmkwKC03ZJMQS6BV5goDeWtKeTFfh/view?usp=sharing",
+                "_blank"
+              )
+            }>
+            Resume
+          </button>
+          <button className="menuitems">Projects</button>
+          <button className="menuitems">Skills</button>
+          <button className="menuitems">Hobbies</button>
+          <button className="menuitems">Contact</button>
+        </div>
         <div
           className="move"
           style={{

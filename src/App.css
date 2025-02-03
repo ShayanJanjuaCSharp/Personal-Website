@@ -32,6 +32,15 @@
 .move {
   animation: topright 3s forwards 16s cubic-bezier(0.09, 0.85, 0.38, 0.98);
 }
+.menuitems {
+  background-color: #fffced;
+  color: #001024;
+}
+.menuitems:hover {
+  background-color: #001024;
+  color: #fffced;
+  border-color: #001024;
+}
 @keyframes cursor {
   50% {
     border-color: #000005;
