@@ -7,11 +7,12 @@
   border-right: 3px solid;
   border-width: 0.01em;
   border-color: transparent;
-  width: 100%;
+  width: 0%;
   white-space: nowrap;
   overflow: hidden;
-  animation: typing 7s steps(19) forwards,
-    cursor 0.5s step-end alternate infinite, stop 0.5s step-end forwards 9s;
+  animation: typingReverse 5s steps(19) forwards 1s,
+    typing 4s steps(19) forwards 8s, cursor 0.5s step-end alternate infinite,
+    stop 0.5s step-end forwards 12s;
   font-family: jbbold;
   line-height: 1em;
 }
@@ -22,13 +23,15 @@
   width: 100%;
   white-space: nowrap;
   overflow: hidden;
-  animation: typingReverse 3s steps(3) forwards 9s,
-    cursor 0.5s step-end alternate infinite 9s, stop 0.5s step-end forwards 12s;
+  animation: typingReverse15 3s steps(3) forwards 12s,
+    cursor 0.5s step-end alternate infinite 12s, stop 0.5s step-end forwards 15s;
   font-family: jbbold;
   line-height: 1em;
   width: 0;
 }
-
+.move {
+  animation: topright 3s forwards 16s cubic-bezier(0.09, 0.85, 0.38, 0.98);
+}
 @keyframes cursor {
   50% {
     border-color: #000005;
@@ -42,7 +45,7 @@
     width: 0%;
   }
 }
-@keyframes typingReverse {
+@keyframes typingReverse15 {
   from {
     width: 0;
   }
@@ -50,9 +53,23 @@
     width: 15%;
   }
 }
+@keyframes typingReverse {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
 @keyframes stop {
   to {
     border-color: transparent;
+  }
+}
+@keyframes topright {
+  100% {
+    top: 5%;
+    left: 25%;
   }
 }
 
@@ -99,9 +116,4 @@
 @font-face {
   font-family: jbssemi;
   src: url(./fonts/JetBrainsMono-SemiBold.ttf);
-}
-
-use {
-  https: //www.realtimecolors.com/?colors=000005-fffced-5988d4-db4848-a3a1e2&fonts=JetBrains%20Mono-JetBrains%20Mono
-;
 }

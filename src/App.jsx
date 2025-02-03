@@ -68,6 +68,7 @@ export default function App() {
           zIndex: 0,
         }}>
         <div
+          className="move"
           style={{
             position: "absolute",
             top: "50%",
