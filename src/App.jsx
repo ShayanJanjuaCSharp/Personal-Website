@@ -1,4 +1,4 @@
-import { Billboard, OrbitControls } from "@react-three/drei";
+import { Billboard, OrbitControls, ScrollControls } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
 import { Physics, RigidBody } from "@react-three/rapier";
 import { Bloom, EffectComposer } from "@react-three/postprocessing";
@@ -26,26 +26,28 @@ export default function App() {
           near: 0.1,
           far: 1000,
         }}>
-        <Physics gravity={[0, 0, 0]}>
-          <RigidBody
-            colliders="hull"
-            type="dynamic"
-            enabledRotations={[true, true, false]}
-            enabledTranslations={[true, true, false]}
-            position={[0, 0, 0]}>
-            <Text
-              textAlign="center"
-              font={"fonts/JetBrainsMono-Regular.ttf"}
-              color="#000005">
-              SHAYAN ISHAQ JANJUA
-            </Text>
+        <ScrollControls pages={5}>
+          <Physics gravity={[0, 0, 0]}>
+            <RigidBody
+              colliders="hull"
+              type="dynamic"
+              enabledRotations={[true, true, false]}
+              enabledTranslations={[true, true, false]}
+              position={[0, 0, 0]}>
+              <Text
+                textAlign="center"
+                font={"fonts/JetBrainsMono-Regular.ttf"}
+                color="#000005">
+                SHAYAN ISHAQ JANJUA
+              </Text>
 
-            <mesh>
-              <boxGeometry args={[1, 1, 1]} />
-              <meshPhysicalMaterial visible={false} />
-            </mesh>
-          </RigidBody>
-        </Physics>
+              <mesh>
+                <boxGeometry args={[1, 1, 1]} />
+                <meshPhysicalMaterial visible={false} />
+              </mesh>
+            </RigidBody>
+          </Physics>
+        </ScrollControls>
       </Canvas>
 
       <div
@@ -57,33 +59,8 @@ export default function App() {
           width: "100vw",
           height: "100vh",
           zIndex: 0,
+          pointerEvents: "none",
         }}>
-        <div
-          className="menu"
-          style={{
-            position: "absolute",
-            top: "3%",
-            right: "3%",
-            direction: "rtl",
-            fontFamily: "jbbold",
-            backgroundColor: "#fffced",
-            width: "40%",
-          }}>
-          <button
-            className="menuitems"
-            onClick={() =>
-              window.open(
-                "https://drive.google.com/file/d/1u3fPmkwKC03ZJMQS6BV5goDeWtKeTFfh/view?usp=sharing",
-                "_blank"
-              )
-            }>
-            Resume
-          </button>
-          <button className="menuitems">Projects</button>
-          <button className="menuitems">Skills</button>
-          <button className="menuitems">Hobbies</button>
-          <button className="menuitems">Contact</button>
-        </div>
         <div
           className="move"
           style={{
@@ -127,6 +104,34 @@ export default function App() {
             </p>
           </div>
         </div>
+      </div>
+      <div
+        className="menu"
+        style={{
+          position: "absolute",
+          direction: "ltr",
+          fontFamily: "jbbold",
+          backgroundColor: "#fffced",
+          zIndex: 0,
+          width: "40vw",
+          height: "5vh",
+          top: "3%",
+          right: "0",
+        }}>
+        <button
+          className="menuitems"
+          onClick={() =>
+            window.open(
+              "https://drive.google.com/file/d/1u3fPmkwKC03ZJMQS6BV5goDeWtKeTFfh/view?usp=sharing",
+              "_blank"
+            )
+          }>
+          Resume
+        </button>
+        <button className="menuitems">Projects</button>
+        <button className="menuitems">Skills</button>
+        <button className="menuitems">Hobbies</button>
+        <button className="menuitems">Contact</button>
       </div>
     </>
   );
