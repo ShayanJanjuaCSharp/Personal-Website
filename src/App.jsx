@@ -44,9 +44,7 @@ export default function App() {
                 <Text
                   textAlign="center"
                   font={"fonts/JetBrainsMono-Regular.ttf"}
-                  color="#000005">
-                  SHAYAN ISHAQ JANJUA
-                </Text>
+                  color="#000005"></Text>
 
                 <mesh>
                   <boxGeometry args={[1, 1, 1]} />
@@ -125,6 +123,8 @@ export default function App() {
           height: "5vh",
           top: "3%",
           right: "0",
+          pointerEvents: "none",
+          opacity: 0,
         }}>
         <button
           className="menuitems"
