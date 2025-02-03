@@ -32,7 +32,7 @@ export default function App() {
           near: 0.1,
           far: 1000,
         }}>
-        <ScrollControls pages={5}>
+        <ScrollControls pages={6} zIndex={0}>
           <Scroll>
             <Physics gravity={[0, 0, 0]}>
               <RigidBody
@@ -118,7 +118,7 @@ export default function App() {
           direction: "ltr",
           fontFamily: "jbbold",
           backgroundColor: "#fffced",
-          zIndex: 0,
+          zIndex: 1,
           width: "40vw",
           height: "5vh",
           top: "3%",
