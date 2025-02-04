@@ -28,7 +28,7 @@ export default function App() {
         style={{ width: "100vw", height: "100vh", background: "#fffced" }}
         camera={{
           position: [0, 0, 10],
-          fov: 70,
+          fov: viewport.width,
           near: 0.1,
           far: 1000,
         }}>
