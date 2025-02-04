@@ -1,8 +1,10 @@
 import {
   Billboard,
   OrbitControls,
+  OrthographicCamera,
   Scroll,
   ScrollControls,
+  useAspect,
 } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
 import { Physics, RigidBody } from "@react-three/rapier";
@@ -20,18 +22,26 @@ import "./App.css";
 import { viewport } from "three/tsl";
 export default function App() {
   const [name, setname] = useState("SHAYAN ISHAQ JANJUA");
+  const [wi, setwi] = useState(60);
   const font = useFont.preload("/fonts/jbsb.json");
+
+  window.addEventListener("resize", () => {
+    let newW = (window.innerWidth - 100) / (screen.width - 100);
+    setwi(newW * 90 + 15);
+    console.log(wi);
+  });
 
   return (
     <>
       <Canvas
-        style={{ width: "100vw", height: "100vh", background: "#fffced" }}
-        camera={{
-          position: [0, 0, 10],
-          fov: viewport.width,
-          near: 0.1,
-          far: 1000,
-        }}>
+        style={{ width: "100vw", height: "100vh", background: "#fffced" }}>
+        <OrthographicCamera
+          makeDefault
+          zoom={wi}
+          near={0}
+          far={2000}
+          position={[0, 0, 0]}
+        />
         <ScrollControls pages={5} zIndex={0}>
           <Scroll>
             <Physics gravity={[0, 0, 0]}>
