@@ -32,7 +32,7 @@ export default function App() {
           near: 0.1,
           far: 1000,
         }}>
-        <ScrollControls pages={6} zIndex={0}>
+        <ScrollControls pages={5} zIndex={0}>
           <Scroll>
             <Physics gravity={[0, 0, 0]}>
               <RigidBody
@@ -40,12 +40,61 @@ export default function App() {
                 type="dynamic"
                 enabledRotations={[true, true, false]}
                 enabledTranslations={[true, true, false]}
-                position={[0, 0, 0]}>
+                position={[-5, 3, 0]}>
                 <Text
                   textAlign="center"
+                  font={"fonts/JetBrainsMono-Bold.ttf"}
+                  color="#000005">
+                  I'm a
+                </Text>
+                <Text
+                  position={[2.5, -1.5, 0]}
+                  fontSize={0.9}
+                  textAlign="left"
+                  font={"fonts/JetBrainsMono-Bold.ttf"}
+                  color="#000005">
+                  {"<WebDeveloper/>"}
+                </Text>
+                <Text
+                  position={[2.3, -2.5, 0]}
+                  fontSize={0.8}
+                  textAlign="left"
+                  font={"fonts/Android.ttf"}
+                  color="#000005">
+                  {"App Developer"}
+                </Text>
+                <Text
+                  position={[2.5, -3.5, 0]}
+                  fontSize={1}
+                  textAlign="left"
+                  font={"fonts/MC.ttf"}
+                  color="#000005">
+                  {"G   me Devel   per"}
+                </Text>
+                <Text
+                  position={[-0.6, -3.55, 0]}
+                  fontSize={0.8}
+                  textAlign="left"
+                  font={"fonts/PS.ttf"}
+                  color="#000005">
+                  {"T"}
+                </Text>
+                <Text
+                  position={[4.45, -3.55, 0]}
+                  fontSize={0.8}
+                  textAlign="left"
+                  font={"fonts/PS.ttf"}
+                  color="#000005">
+                  {"C"}
+                </Text>
+                <Text
+                  position={[0.2, -4.5, 0]}
+                  fontSize={0.9}
+                  textAlign="left"
                   font={"fonts/JetBrainsMono-Regular.ttf"}
-                  color="#000005"></Text>
-
+                  color="#000005">
+                  {"Writer"}
+                </Text>
                 <mesh>
                   <boxGeometry args={[1, 1, 1]} />
                   <meshPhysicalMaterial visible={false} />
@@ -124,7 +173,7 @@ export default function App() {
           top: "3%",
           right: "0",
           pointerEvents: "none",
-          opacity: 0,
+          opacity: 1,
         }}>
         <button
           className="menuitems"
