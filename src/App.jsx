@@ -1,35 +1,43 @@
 import {
-  Billboard,
-  OrbitControls,
   OrthographicCamera,
   Scroll,
   ScrollControls,
-  useAspect,
+  useScroll,
 } from "@react-three/drei";
-import { Canvas } from "@react-three/fiber";
+import { Canvas, useFrame } from "@react-three/fiber";
 import { Physics, RigidBody } from "@react-three/rapier";
 import { Bloom, EffectComposer } from "@react-three/postprocessing";
-import {
-  Environment,
-  Lightformer,
-  MeshTransmissionMaterial,
-} from "@react-three/drei";
 import { Text } from "@react-three/drei";
 import { useFont } from "@react-three/drei";
-import { MeshStandardMaterial } from "three";
 import { useEffect, useState } from "react";
 import "./App.css";
-import { viewport } from "three/tsl";
+
 export default function App() {
-  const [name, setname] = useState("SHAYAN ISHAQ JANJUA");
-  const [wi, setwi] = useState(60);
-  const font = useFont.preload("/fonts/jbsb.json");
+  const intro = "I am a <WebDeveloper />\nGame Developer and \nWriter.";
+  const [wi, setwi] = useState(
+    (90 * (window.innerWidth - 100)) / (screen.width - 100) + 15
+  );
+  const [offset, Setof] = useState(
+    (2.3 * (window.innerWidth - 100)) / (screen.width - 100)
+  );
+  const [wd, setWeD] = useState("<WebDeveloper/>");
+  function wdscramble() {
+    let arr = wd.split("");
+    arr.forEach((char) => {
+      let randomChar = Math.random() * 65535;
+      char = String.fromCharCode(randomChar);
+    });
+    setWeD(arr.join(""));
+  }
 
   window.addEventListener("resize", () => {
     let newW = (window.innerWidth - 100) / (screen.width - 100);
     setwi(newW * 90 + 15);
+    Setof(newW * 2.3);
     console.log(wi);
   });
+
+  const scroll = useScroll();
 
   return (
     <>
@@ -40,70 +48,23 @@ export default function App() {
           zoom={wi}
           near={0}
           far={2000}
-          position={[0, 0, 0]}
+          position={[offset, 0, 0]}
         />
         <ScrollControls pages={5} zIndex={0}>
           <Scroll>
-            <Physics gravity={[0, 0, 0]}>
+            <Physics gravity={[0, -9.81, 0]}>
               <RigidBody
                 colliders="hull"
                 type="dynamic"
                 enabledRotations={[true, true, false]}
                 enabledTranslations={[true, true, false]}
-                position={[-5, 3, 0]}>
+                position={[0.2, 0, 0]}>
                 <Text
-                  textAlign="center"
-                  font={"fonts/JetBrainsMono-Bold.ttf"}
-                  color="#000005">
-                  I'm a
-                </Text>
-                <Text
-                  position={[2.5, -1.5, 0]}
-                  fontSize={0.9}
                   textAlign="left"
-                  font={"fonts/JetBrainsMono-Bold.ttf"}
-                  color="#000005">
-                  {"<WebDeveloper/>"}
-                </Text>
-                <Text
-                  position={[2.3, -2.5, 0]}
-                  fontSize={0.8}
-                  textAlign="left"
-                  font={"fonts/Android.ttf"}
-                  color="#000005">
-                  {"App Developer"}
-                </Text>
-                <Text
-                  position={[2.5, -3.5, 0]}
-                  fontSize={1}
-                  textAlign="left"
-                  font={"fonts/MC.ttf"}
-                  color="#000005">
-                  {"G   me Devel   per"}
-                </Text>
-                <Text
-                  position={[-0.6, -3.55, 0]}
-                  fontSize={0.8}
-                  textAlign="left"
-                  font={"fonts/PS.ttf"}
-                  color="#000005">
-                  {"T"}
-                </Text>
-                <Text
-                  position={[4.45, -3.55, 0]}
-                  fontSize={0.8}
-                  textAlign="left"
-                  font={"fonts/PS.ttf"}
-                  color="#000005">
-                  {"C"}
-                </Text>
-                <Text
-                  position={[0.2, -4.5, 0]}
-                  fontSize={0.9}
-                  textAlign="left"
-                  font={"fonts/JetBrainsMono-Regular.ttf"}
-                  color="#000005">
-                  {"Writer"}
+                  font={"fonts/JetBrainsMono-ExtraBold.ttf"}
+                  color="#000005"
+                  letterSpacing={-0.03}>
+                  {intro}
                 </Text>
                 <mesh>
                   <boxGeometry args={[1, 1, 1]} />
@@ -183,7 +144,7 @@ export default function App() {
           top: "3%",
           right: "0",
           pointerEvents: "none",
-          opacity: 1,
+          opacity: 0,
         }}>
         <button
           className="menuitems"
