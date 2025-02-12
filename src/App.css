@@ -115,7 +115,7 @@
 
 @font-face {
   font-family: jbbold;
-  src: url("./fonts/JetBrainsMono-Bold.ttf");
+  src: url("./fonts/JetBrainsMono-Bold.ttf") format("truetype");
 }
 
 @font-face {
