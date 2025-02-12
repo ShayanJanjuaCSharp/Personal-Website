@@ -3,6 +3,7 @@ import { createRoot } from "react-dom/client";
 /*import { createBrowserRouter, RouterProvider } from "react-router-dom";*/
 import "./index.css";
 import App from "./App.jsx";
+import Loading from "./pages/Loading.jsx";
 /*import Projects from "./pages/Projects.jsx";
 import Skills from "./pages/Skills.jsx";
 import Hobbies from "./pages/Hobbies.jsx";
@@ -31,7 +32,7 @@ import Contact from "./pages/Contact.jsx";*/
 ]);*/
 createRoot(document.getElementById("root")).render(
   <StrictMode>
-    <Suspense>
+    <Suspense fallback={<Loading />}>
       <App />
     </Suspense>
   </StrictMode>

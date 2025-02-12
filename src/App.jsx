@@ -11,9 +11,10 @@ import { Text } from "@react-three/drei";
 import { useFont } from "@react-three/drei";
 import { useEffect, useState } from "react";
 import "./App.css";
+import { use } from "react";
 
 export default function App() {
-  const intro = "I am a <WebDeveloper />\nGame Developer and \nWriter.";
+  const [intro, setIntro] = useState("");
   const [wi, setwi] = useState(
     (90 * (window.innerWidth - 100)) / (screen.width - 100) + 15
   );
@@ -37,12 +38,18 @@ export default function App() {
     console.log(wi);
   });
 
+  useEffect(() => {
+    setTimeout(() => {
+      setIntro("I am a <WebDeveloper />\nGame Developer and \nWriter.");
+    }, 19000);
+  }, []);
+
   const scroll = useScroll();
 
   return (
     <>
       <Canvas
-        style={{ width: "100vw", height: "100vh", background: "#fffced" }}>
+        style={{ width: "100vw", height: "100vh", background: "#001024" }}>
         <OrthographicCamera
           makeDefault
           zoom={wi}
@@ -52,7 +59,7 @@ export default function App() {
         />
         <ScrollControls pages={5} zIndex={0}>
           <Scroll>
-            <Physics gravity={[0, -9.81, 0]}>
+            <Physics gravity={[0, 0, 0]}>
               <RigidBody
                 colliders="hull"
                 type="dynamic"
@@ -62,7 +69,6 @@ export default function App() {
                 <Text
                   textAlign="left"
                   font={"fonts/JetBrainsMono-ExtraBold.ttf"}
-                  color="#000005"
                   letterSpacing={-0.03}>
                   {intro}
                 </Text>
@@ -99,6 +105,7 @@ export default function App() {
             padding: 0,
             alignContent: "center",
             display: "grid",
+            opacity: 1,
           }}>
           <div
             style={{
@@ -137,13 +144,13 @@ export default function App() {
           position: "absolute",
           direction: "ltr",
           fontFamily: "jbbold",
-          backgroundColor: "#fffced",
+          backgroundColor: "#001024",
           zIndex: 1,
           width: "40vw",
           height: "5vh",
           top: "3%",
           right: "0",
-          pointerEvents: "none",
+          //pointerEvents: "none",
           opacity: 0,
         }}>
         <button
