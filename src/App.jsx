@@ -3,6 +3,9 @@ import {
   Scroll,
   ScrollControls,
   useScroll,
+  useGLTF,
+  Gltf,
+  PerspectiveCamera,
 } from "@react-three/drei";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { Physics, RigidBody } from "@react-three/rapier";
@@ -12,9 +15,11 @@ import { useFont } from "@react-three/drei";
 import { useEffect, useState } from "react";
 import "./App.css";
 import { use } from "react";
-import { color } from "three/tsl";
+import { color, PI } from "three/tsl";
 
 export default function App() {
+  const { nodes, materials } = useGLTF("/letstrythis.glb");
+  console.log(nodes);
   const [intro, setIntro] = useState("");
   const tubeCredds =
     "<a href='https://skfb.ly/ossIt'>Bombardier S Stock London Underground</a> by timblewee is licensed under Creative Commons Attribution (http://creativecommons.org/licenses/by/4.0/).";
@@ -53,34 +58,11 @@ export default function App() {
     <>
       <Canvas
         style={{ width: "100vw", height: "100vh", background: "#001024" }}>
-        <OrthographicCamera
-          makeDefault
-          zoom={wi}
-          near={0}
-          far={2000}
-          position={[offset, 0, 0]}
-        />
+        <PerspectiveCamera makeDefault rotation={[0, 0.2, 0]} fov={50} />
+        <ambientLight intensity={0.5} />
         <ScrollControls pages={5} zIndex={0}>
           <Scroll>
-            <Physics gravity={[0, 0, 0]}>
-              <RigidBody
-                colliders="hull"
-                type="dynamic"
-                enabledRotations={[true, true, false]}
-                enabledTranslations={[true, true, false]}
-                position={[0.2, 0, 0]}>
-                <Text
-                  textAlign="left"
-                  font={"fonts/JetBrainsMono-ExtraBold.ttf"}
-                  letterSpacing={-0.03}>
-                  {intro}
-                </Text>
-                <mesh>
-                  <boxGeometry args={[1, 1, 1]} />
-                  <meshPhysicalMaterial visible={false} />
-                </mesh>
-              </RigidBody>
-            </Physics>
+            <Gltf src={"letstrythis.glb"} position={[-2, -2, -15]} />
           </Scroll>
         </ScrollControls>
       </Canvas>
