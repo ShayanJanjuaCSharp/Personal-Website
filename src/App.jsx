@@ -14,7 +14,7 @@ import { useEffect, useState } from "react";
 import "./App.css";
 import { use } from "react";
 import { color, PI } from "three/tsl";
-import Tube from "./pages/tube";
+import Tube from "/pages/tube";
 
 export default function App() {
   const [intro, setIntro] = useState("");
