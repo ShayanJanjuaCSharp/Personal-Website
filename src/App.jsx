@@ -49,15 +49,12 @@ export default function App() {
     <>
       <Canvas
         style={{ width: "100vw", height: "100vh", background: "#001024" }}
+        camera={{ position: [0, 0, -2.5], rotation: [0, 0.2, 0] }}
       >
-        <PerspectiveCamera makeDefault rotation={[0, 0.2, 0]} fov={50} />
         <ambientLight intensity={0.5} />
-        <ScrollControls>
+        <ScrollControls pages={4} damping={0.1}>
           <Scroll>
             <Gltf src={"letstrythis.glb"} position={[-2, -2, -15]} />
-            <Text position={[0, -2, -15]} color={"#ffffff"}>
-              Hello
-            </Text>
           </Scroll>
         </ScrollControls>
         <EffectComposer>
