@@ -14,6 +14,7 @@ import { useEffect, useState } from "react";
 import "./App.css";
 import { use } from "react";
 import { color, PI } from "three/tsl";
+import Tube from "./pages/tube";
 
 export default function App() {
   const [intro, setIntro] = useState("");
@@ -54,7 +55,7 @@ export default function App() {
         <ambientLight intensity={0.5} />
         <ScrollControls pages={4} damping={0.1}>
           <Scroll>
-            <Gltf src={"letstrythis.glb"} position={[-2, -2, -15]} />
+            <Tube />
           </Scroll>
         </ScrollControls>
         <EffectComposer>
