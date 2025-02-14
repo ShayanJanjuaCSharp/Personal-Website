@@ -1,15 +1,13 @@
 import {
-  OrthographicCamera,
   Scroll,
   ScrollControls,
   useScroll,
-  useGLTF,
   Gltf,
   PerspectiveCamera,
+  OrbitControls,
 } from "@react-three/drei";
 import { Canvas, useFrame } from "@react-three/fiber";
-import { Physics, RigidBody } from "@react-three/rapier";
-import { Bloom, EffectComposer } from "@react-three/postprocessing";
+import { Bloom, EffectComposer, Noise } from "@react-three/postprocessing";
 import { Text } from "@react-three/drei";
 import { useFont } from "@react-three/drei";
 import { useEffect, useState } from "react";
@@ -18,8 +16,6 @@ import { use } from "react";
 import { color, PI } from "three/tsl";
 
 export default function App() {
-  const { nodes, materials } = useGLTF("/letstrythis.glb");
-  console.log(nodes);
   const [intro, setIntro] = useState("");
   const tubeCredds =
     "<a href='https://skfb.ly/ossIt'>Bombardier S Stock London Underground</a> by timblewee is licensed under Creative Commons Attribution (http://creativecommons.org/licenses/by/4.0/).";
@@ -43,28 +39,31 @@ export default function App() {
     let newW = (window.innerWidth - 100) / (screen.width - 100);
     setwi(newW * 90 + 15);
     Setof(newW * 2.3);
-    console.log(wi);
   });
 
   useEffect(() => {
-    setTimeout(() => {
-      setIntro("I am a <WebDeveloper />\nGame Developer and \nWriter.");
-    }, 19000);
+    setTimeout(() => {}, 19000);
   }, []);
-
-  const scroll = useScroll();
 
   return (
     <>
       <Canvas
-        style={{ width: "100vw", height: "100vh", background: "#001024" }}>
+        style={{ width: "100vw", height: "100vh", background: "#001024" }}
+      >
         <PerspectiveCamera makeDefault rotation={[0, 0.2, 0]} fov={50} />
         <ambientLight intensity={0.5} />
-        <ScrollControls pages={5} zIndex={0}>
+        <ScrollControls>
           <Scroll>
             <Gltf src={"letstrythis.glb"} position={[-2, -2, -15]} />
+            <Text position={[0, -2, -15]} color={"#ffffff"}>
+              Hello
+            </Text>
           </Scroll>
         </ScrollControls>
+        <EffectComposer>
+          <Bloom intensity={0.5} />
+          <Noise opacity={0.13} />
+        </EffectComposer>
       </Canvas>
 
       <div
@@ -75,30 +74,10 @@ export default function App() {
           left: 0,
           width: "100vw",
           height: "100vh",
-          zIndex: 0,
-        }}>
-        <p
-          style={{
-            position: "absolute",
-            zIndex: 0,
-            color: "grey",
-            fontSize: "1.5vw",
-            bottom: 0,
-            right: "1%",
-            textAlign: "right",
-            width: "30vw",
-          }}>
-          <a href="https://skfb.ly/ossIt">
-            Bombardier S Stock London Underground
-          </a>
-          {" by "}
-          <a href="https://sketchfab.com/timblewee">timblewee</a> is licensed
-          under
-          <a href="http://creativecommons.org/licenses/by/4.0/">
-            {" Creative Commons Attribution"}
-          </a>
-          .
-        </p>
+          zIndex: 1,
+          pointerEvents: "none",
+        }}
+      >
         <div
           className="move"
           style={{
@@ -113,18 +92,21 @@ export default function App() {
             display: "grid",
             opacity: 1,
             pointerEvents: "none",
-          }}>
+          }}
+        >
           <div
             style={{
               gridColumn: 1,
               gridRow: 1,
-            }}>
+            }}
+          >
             <p
               style={{
                 position: "relative",
                 zIndex: 1,
               }}
-              className="name">
+              className="name"
+            >
               SHAYAN ISHAQ JANJUA
             </p>
           </div>
@@ -132,14 +114,16 @@ export default function App() {
             style={{
               gridColumn: 1,
               gridRow: 1,
-            }}>
+            }}
+          >
             <p
               style={{
                 position: "relative",
-                zIndex: 0,
+                zIndex: 1,
                 textAlign: "left",
               }}
-              className="name2">
+              className="name2"
+            >
               SIJ
             </p>
           </div>
@@ -159,7 +143,8 @@ export default function App() {
           right: "0",
           pointerEvents: "none",
           opacity: 0,
-        }}>
+        }}
+      >
         <button
           className="menuitems"
           onClick={() =>
@@ -167,13 +152,51 @@ export default function App() {
               "https://drive.google.com/file/d/1u3fPmkwKC03ZJMQS6BV5goDeWtKeTFfh/view?usp=sharing",
               "_blank"
             )
-          }>
+          }
+        >
           Resume
         </button>
         <button className="menuitems">Projects</button>
         <button className="menuitems">Skills</button>
         <button className="menuitems">Hobbies</button>
         <button className="menuitems">Contact</button>
+      </div>
+      <div
+        style={{
+          position: "absolute",
+          direction: "ltr",
+          fontFamily: "jbbold",
+          backgroundColor: "#001024",
+          zIndex: 1,
+          width: "50vw",
+          height: "7vh",
+          bottom: "0",
+          right: "0",
+          opacity: 1,
+        }}
+      >
+        <p
+          style={{
+            position: "absolute",
+            zIndex: 1,
+            color: "grey",
+            fontSize: "1.5vw",
+            bottom: 0,
+            right: "1%",
+            textAlign: "right",
+          }}
+        >
+          <a href="https://skfb.ly/ossIt">
+            Bombardier S Stock London Underground
+          </a>
+          {" by "}
+          <a href="https://sketchfab.com/timblewee">timblewee</a> is licensed
+          under
+          <a href="http://creativecommons.org/licenses/by/4.0/">
+            {" Creative Commons Attribution"}
+          </a>
+          .
+        </p>
       </div>
     </>
   );
