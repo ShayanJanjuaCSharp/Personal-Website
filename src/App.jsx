@@ -148,7 +148,7 @@ export default function App() {
           }}>
           Resume
         </button>
-        <button className="menuitems" onClick={() => setS({ s: 357, b: 1 })}>
+        <button className="menuitems" onClick={() => setS({ s: 0.23, b: 1 })}>
           Projects
         </button>
         <button className="menuitems">Skills</button>

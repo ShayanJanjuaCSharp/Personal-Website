@@ -7,7 +7,7 @@ export default function Tube(s) {
   useFrame((state, delta) => {
     console.log("sc = " + scroll.el.scrollTop);
     if (s.s.b == 1) {
-      scroll.el.scrollTop = s.s.s;
+      scroll.el.scrollTop = scroll.el.scrollHeight * s.s.s;
       s.s.b = 0;
       console.log(JSON.stringify(s.s));
     }
