@@ -170,7 +170,7 @@ export default function App() {
           direction: "ltr",
           fontFamily: "jbbold",
           backgroundColor: "transparent",
-          zIndex: 5,
+          zIndex: 1,
           width: "50vw",
           height: "7vh",
           bottom: "0",
