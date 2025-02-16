@@ -64,7 +64,18 @@ export default function App() {
           <Noise opacity={0.13} />
         </EffectComposer>
       </Canvas>
-
+      <div
+        className="reveal"
+        style={{
+          position: "fixed",
+          top: 0,
+          left: 0,
+          width: "100vw",
+          height: "100vh",
+          zIndex: 3,
+          backgroundColor: "#001024",
+          pointerEvents: "none",
+        }}></div>
       <div
         className="overlay"
         style={{
@@ -73,7 +84,7 @@ export default function App() {
           left: 0,
           width: "100vw",
           height: "100vh",
-          zIndex: 1,
+          zIndex: 5,
           pointerEvents: "none",
         }}>
         <div
@@ -99,7 +110,6 @@ export default function App() {
             <p
               style={{
                 position: "relative",
-                zIndex: 1,
               }}
               className="name">
               SHAYAN ISHAQ JANJUA
@@ -113,7 +123,6 @@ export default function App() {
             <p
               style={{
                 position: "relative",
-                zIndex: 1,
                 textAlign: "left",
               }}
               className="name2">
@@ -129,7 +138,7 @@ export default function App() {
           direction: "ltr",
           fontFamily: "jbbold",
           backgroundColor: "transparent",
-          zIndex: 1,
+          zIndex: 5,
           width: "40vw",
           height: "5vh",
           top: "3%",
@@ -161,7 +170,7 @@ export default function App() {
           direction: "ltr",
           fontFamily: "jbbold",
           backgroundColor: "transparent",
-          zIndex: 1,
+          zIndex: 5,
           width: "50vw",
           height: "7vh",
           bottom: "0",
@@ -171,7 +180,6 @@ export default function App() {
         <p
           style={{
             position: "absolute",
-            zIndex: 1,
             color: "grey",
             fontSize: "1vw",
             bottom: 0,
