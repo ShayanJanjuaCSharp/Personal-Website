@@ -18,6 +18,7 @@ import Tube from "./pages/Tube";
 
 export default function App() {
   const [intro, setIntro] = useState("");
+  const [s, setS] = useState({ s: 0, b: 0 });
   const tubeCredds =
     "<a href='https://skfb.ly/ossIt'>Bombardier S Stock London Underground</a> by timblewee is licensed under Creative Commons Attribution (http://creativecommons.org/licenses/by/4.0/).";
   const [wi, setwi] = useState(
@@ -50,13 +51,13 @@ export default function App() {
     <>
       <Canvas
         style={{ width: "100vw", height: "100vh", background: "#001024" }}
-        camera={{ position: [0, 0, -2.5], rotation: [0, 0.2, 0] }}
-      >
+        camera={{
+          position: [3, 0, 0],
+          rotation: [0, Math.PI / 2, 0],
+        }}>
         <ambientLight intensity={0.5} />
-        <ScrollControls pages={4} damping={0.1}>
-          <Scroll>
-            <Tube />
-          </Scroll>
+        <ScrollControls pages={4} damping={0.2}>
+          <Tube s={s} />
         </ScrollControls>
         <EffectComposer>
           <Bloom intensity={0.5} />
@@ -74,8 +75,7 @@ export default function App() {
           height: "100vh",
           zIndex: 1,
           pointerEvents: "none",
-        }}
-      >
+        }}>
         <div
           className="move"
           style={{
@@ -90,21 +90,18 @@ export default function App() {
             display: "grid",
             opacity: 1,
             pointerEvents: "none",
-          }}
-        >
+          }}>
           <div
             style={{
               gridColumn: 1,
               gridRow: 1,
-            }}
-          >
+            }}>
             <p
               style={{
                 position: "relative",
                 zIndex: 1,
               }}
-              className="name"
-            >
+              className="name">
               SHAYAN ISHAQ JANJUA
             </p>
           </div>
@@ -112,16 +109,14 @@ export default function App() {
             style={{
               gridColumn: 1,
               gridRow: 1,
-            }}
-          >
+            }}>
             <p
               style={{
                 position: "relative",
                 zIndex: 1,
                 textAlign: "left",
               }}
-              className="name2"
-            >
+              className="name2">
               SIJ
             </p>
           </div>
@@ -133,7 +128,7 @@ export default function App() {
           position: "absolute",
           direction: "ltr",
           fontFamily: "jbbold",
-          backgroundColor: "#001024",
+          backgroundColor: "transparent",
           zIndex: 1,
           width: "40vw",
           height: "5vh",
@@ -141,20 +136,21 @@ export default function App() {
           right: "0",
           pointerEvents: "none",
           opacity: 0,
-        }}
-      >
+        }}>
         <button
           className="menuitems"
-          onClick={() =>
-            window.open(
+          onClick={() => {
+            /*window.open(
               "https://drive.google.com/file/d/1u3fPmkwKC03ZJMQS6BV5goDeWtKeTFfh/view?usp=sharing",
               "_blank"
-            )
-          }
-        >
+            );*/
+            setS({ s: 0, b: 1 });
+          }}>
           Resume
         </button>
-        <button className="menuitems">Projects</button>
+        <button className="menuitems" onClick={() => setS({ s: 357, b: 1 })}>
+          Projects
+        </button>
         <button className="menuitems">Skills</button>
         <button className="menuitems">Hobbies</button>
         <button className="menuitems">Contact</button>
@@ -164,26 +160,25 @@ export default function App() {
           position: "absolute",
           direction: "ltr",
           fontFamily: "jbbold",
-          backgroundColor: "#001024",
+          backgroundColor: "transparent",
           zIndex: 1,
           width: "50vw",
           height: "7vh",
           bottom: "0",
           right: "0",
           opacity: 1,
-        }}
-      >
+        }}>
         <p
           style={{
             position: "absolute",
             zIndex: 1,
             color: "grey",
-            fontSize: "1.5vw",
+            fontSize: "1vw",
             bottom: 0,
             right: "1%",
             textAlign: "right",
-          }}
-        >
+            backgroundColor: "transparent",
+          }}>
           <a href="https://skfb.ly/ossIt">
             Bombardier S Stock London Underground
           </a>
