@@ -1,51 +1,26 @@
-import {
-  Scroll,
-  ScrollControls,
-  useScroll,
-  Gltf,
-  PerspectiveCamera,
-  OrbitControls,
-} from "@react-three/drei";
-import { Canvas, useFrame } from "@react-three/fiber";
+import { Billboard, ScrollControls } from "@react-three/drei";
+import { Canvas } from "@react-three/fiber";
 import { Bloom, EffectComposer, Noise } from "@react-three/postprocessing";
 import { Text } from "@react-three/drei";
-import { useFont } from "@react-three/drei";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import "./App.css";
-import { use } from "react";
-import { color, PI } from "three/tsl";
 import Tube from "./pages/Tube";
 
 export default function App() {
-  const [intro, setIntro] = useState("");
+  //scroll contstant
   const [s, setS] = useState({ s: 0, b: 0 });
+  //Resume button colour
+  const [resumecolour, setRc] = useState("#ffffff");
+  //tube model credits
   const tubeCredds =
     "<a href='https://skfb.ly/ossIt'>Bombardier S Stock London Underground</a> by timblewee is licensed under Creative Commons Attribution (http://creativecommons.org/licenses/by/4.0/).";
-  const [wi, setwi] = useState(
-    (90 * (window.innerWidth - 100)) / (screen.width - 100) + 15
-  );
-  const [offset, Setof] = useState(
-    (2.3 * (window.innerWidth - 100)) / (screen.width - 100)
-  );
-  const [wd, setWeD] = useState("<WebDeveloper/>");
-  function wdscramble() {
-    let arr = wd.split("");
-    arr.forEach((char) => {
-      let randomChar = Math.random() * 65535;
-      char = String.fromCharCode(randomChar);
-    });
-    setWeD(arr.join(""));
-  }
-
+  //width ratio
+  const [wi, setwi] = useState(window.innerWidth / 1900);
+  //Resive event calculates new width ratio
   window.addEventListener("resize", () => {
-    let newW = (window.innerWidth - 100) / (screen.width - 100);
-    setwi(newW * 90 + 15);
-    Setof(newW * 2.3);
+    let newW = window.innerWidth / 1900;
+    setwi(newW);
   });
-
-  useEffect(() => {
-    setTimeout(() => {}, 19000);
-  }, []);
 
   return (
     <>
@@ -55,12 +30,17 @@ export default function App() {
           position: [3, 0, 0],
           rotation: [0, Math.PI / 2, 0],
         }}>
-        <ambientLight intensity={0.5} />
+        <ambientLight intensity={0.015} />
+        <directionalLight
+          position={[0, -2, 0]}
+          rotation={[0, 0, Math.PI]}
+          intensity={1}
+        />
         <ScrollControls pages={4} damping={0.2}>
           <Tube s={s} />
         </ScrollControls>
         <EffectComposer>
-          <Bloom intensity={0.5} />
+          <Bloom intensity={0.7} />
           <Noise opacity={0.13} />
         </EffectComposer>
       </Canvas>
@@ -76,6 +56,25 @@ export default function App() {
           backgroundColor: "#001024",
           pointerEvents: "none",
         }}></div>
+      <div
+        style={{
+          position: "absolute",
+          top: "30vh",
+          left: "50vw",
+          width: "50vw",
+          height: "100vh",
+          zIndex: 1,
+          textAlign: "left",
+          pointerEvents: "none",
+        }}>
+        <h1 style={{ fontSize: "7vw" }}>I am a</h1>
+        <p style={{ fontSize: "5vw" }}>{"<Web Developer/>"}</p>
+        <a
+          style={{ pointerEvents: "all", fontSize: "3vw" }}
+          href="https://drive.google.com/file/d/1u3fPmkwKC03ZJMQS6BV5goDeWtKeTFfh/view?usp=sharing">
+          Learn more about me.
+        </a>
+      </div>
       <div
         className="overlay"
         style={{
@@ -149,20 +148,22 @@ export default function App() {
         <button
           className="menuitems"
           onClick={() => {
-            /*window.open(
-              "https://drive.google.com/file/d/1u3fPmkwKC03ZJMQS6BV5goDeWtKeTFfh/view?usp=sharing",
-              "_blank"
-            );*/
             setS({ s: 0, b: 1 });
           }}>
           Resume
         </button>
-        <button className="menuitems" onClick={() => setS({ s: 0.23, b: 1 })}>
+        <button className="menuitems" onClick={() => setS({ s: 0.19, b: 1 })}>
           Projects
         </button>
-        <button className="menuitems">Skills</button>
-        <button className="menuitems">Hobbies</button>
-        <button className="menuitems">Contact</button>
+        <button className="menuitems" onClick={() => setS({ s: 0.38, b: 1 })}>
+          Skills
+        </button>
+        <button className="menuitems" onClick={() => setS({ s: 0.545, b: 1 })}>
+          Hobbies
+        </button>
+        <button className="menuitems" onClick={() => setS({ s: 1, b: 1 })}>
+          Contact
+        </button>
       </div>
       <div
         style={{

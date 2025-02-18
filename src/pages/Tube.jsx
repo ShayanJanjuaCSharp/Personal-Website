@@ -5,24 +5,34 @@ import { Gltf } from "@react-three/drei";
 export default function Tube(s) {
   const scroll = useScroll();
   useFrame((state, delta) => {
-    console.log("sc = " + scroll.el.scrollTop);
     if (s.s.b == 1) {
       scroll.el.scrollTop = scroll.el.scrollHeight * s.s.s;
       s.s.b = 0;
-      console.log(JSON.stringify(s.s));
     }
     if (scroll.offset < 0.23) {
       let pc = scroll.offset / 0.23;
-      let camangle = Math.min((Math.PI / 2) * pc + 0.2, Math.PI / 2);
+      let camangle = Math.min((Math.PI / 2) * pc + 0.3, Math.PI / 2);
       state.camera.rotation.set(0, camangle, 0);
       state.camera.position.set(
-        3 * Math.cos(Math.PI / 2 - camangle) + (1 - pc) / 2,
+        3 * Math.cos(Math.PI / 2 - camangle) + (1 - pc) * 1.8,
         0,
         3 * Math.sin(Math.PI / 2 - camangle) + (1 - pc) * 4
       );
+    } else if (scroll.offset < 0.47) {
+      let pc = (scroll.offset - 0.23) / 0.24;
+      state.camera.position.set(3, 0, -5 * pc);
+    } else if (scroll.offset < 0.69) {
+      let pc = (scroll.offset - 0.47) / 0.22;
+      state.camera.position.set(3, 0, -5 - 5.5 * pc);
     } else {
-      state.camera.position.set(3, 0, 0);
-      state.camera.rotation.set(0, Math.PI / 2, 0);
+      let pc = (scroll.offset - 0.69) / 0.31;
+      let camangle = Math.min((Math.PI / 2) * pc, Math.PI / 2);
+      state.camera.rotation.set(0, camangle + Math.PI / 2, 0);
+      state.camera.position.set(
+        3 * Math.cos(camangle),
+        0,
+        -10.5 - 5.5 * Math.sin(camangle)
+      );
     }
 
     //2,0,12 begin position
