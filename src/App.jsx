@@ -8,6 +8,7 @@ import Tube from "./pages/Tube";
 import { MeshTransmissionMaterial } from "@react-three/drei";
 import { useControls } from "leva";
 import { attenuationDistance, clearcoat, color } from "three/tsl";
+import { MeshPortalMaterial } from "@react-three/drei";
 
 export default function App() {
   const c = {
@@ -63,6 +64,7 @@ export default function App() {
           intensity={0.1}
         />
         <ScrollControls pages={4} damping={0.2}>
+          {/* USE PORTALS
           <Text
             rotation={[0, Math.PI / 2, 0]}
             position={[0.2, 1.35, 0.4]}
@@ -94,11 +96,11 @@ export default function App() {
             font="./fonts/JetBrainsMono-ExtraBold.ttf">
             Contact Me
             <MeshTransmissionMaterial color={"yellow"} {...c} />
-          </Text>
+          </Text>*/}
           <Tube s={s} />
           <mesh position={[0, -2.1, -4.2]}>
             <boxGeometry args={[4, 1, 19]} />
-            <MeshTransmissionMaterial {...c} color={"white"} />
+            <MeshPortalMaterial />
           </mesh>
         </ScrollControls>
         <EffectComposer>
