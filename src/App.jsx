@@ -6,8 +6,28 @@ import { useState } from "react";
 import "./App.css";
 import Tube from "./pages/Tube";
 import { MeshTransmissionMaterial } from "@react-three/drei";
+import { useControls } from "leva";
+import { attenuationDistance, clearcoat, color } from "three/tsl";
 
 export default function App() {
+  const c = {
+    transmissionSampler: true,
+    samples: 8,
+    resolution: 1024,
+    transmission: 1,
+    roughness: 0.08,
+    thickness: 0.19,
+    ior: 1.53,
+    chromaticAberration: 0.77,
+    anisotropy: 0.66,
+    distortion: 0.73,
+    distortionScale: 0.61,
+    temporalDistortion: 0.85,
+    clearcoat: 1,
+    attenuationDistance: 8.16,
+    color: "#ff000a",
+  };
+
   //scroll contstant
   const [s, setS] = useState({ s: 0, b: 0 });
   const [op, setOp] = useState(1);
@@ -46,21 +66,11 @@ export default function App() {
         <ScrollControls pages={4} damping={0.2}>
           <Text
             rotation={[0, Math.PI / 2, 0]}
-            position={[-0.2, 1.5, 0.6]}
+            position={[0.2, 1.35, 0.4]}
             fontSize={0.3}
-            color={"red"}
             font="./fonts/JetBrainsMono-ExtraBold.ttf">
             Projects
-            <MeshTransmissionMaterial
-              anisotropy={1}
-              transmission={1}
-              thickness={0.1}
-              roughness={0.1}
-              distortion={0.1}
-              distortionScale={0.1}
-              chromaticAberration={0.1}
-              color="red"
-            />
+            <MeshTransmissionMaterial {...c} />
           </Text>
           <Tube s={s} />
           <mesh position={[0, -2.1, -4.2]}>
