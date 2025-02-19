@@ -25,7 +25,6 @@ export default function App() {
     temporalDistortion: 0.85,
     clearcoat: 1,
     attenuationDistance: 8.16,
-    color: "#ff000a",
   };
 
   //scroll contstant
@@ -70,21 +69,36 @@ export default function App() {
             fontSize={0.3}
             font="./fonts/JetBrainsMono-ExtraBold.ttf">
             Projects
-            <MeshTransmissionMaterial {...c} />
+            <MeshTransmissionMaterial color={"#ff000a"} {...c} />
+          </Text>
+          <Text
+            rotation={[0, Math.PI / 2, 0]}
+            position={[0.2, 1.35, -4.3]}
+            fontSize={0.3}
+            font="./fonts/JetBrainsMono-ExtraBold.ttf">
+            Skills
+            <MeshTransmissionMaterial color={"green"} {...c} />
+          </Text>
+          <Text
+            rotation={[0, Math.PI / 2, 0]}
+            position={[0.3, 1.35, -9.8]}
+            fontSize={0.3}
+            font="./fonts/JetBrainsMono-ExtraBold.ttf">
+            Hobbies
+            <MeshTransmissionMaterial color={"blue"} {...c} />
+          </Text>
+          <Text
+            rotation={[0, Math.PI, 0]}
+            position={[0.2, 1.2, -13.8]}
+            fontSize={0.3}
+            font="./fonts/JetBrainsMono-ExtraBold.ttf">
+            Contact Me
+            <MeshTransmissionMaterial color={"yellow"} {...c} />
           </Text>
           <Tube s={s} />
           <mesh position={[0, -2.1, -4.2]}>
             <boxGeometry args={[4, 1, 19]} />
-            <MeshTransmissionMaterial
-              anisotropy={1}
-              transmission={1}
-              thickness={1}
-              roughness={0.1}
-              distortion={0.1}
-              distortionScale={0.1}
-              chromaticAberration={0.1}
-              color="white"
-            />
+            <MeshTransmissionMaterial {...c} color={"white"} />
           </mesh>
         </ScrollControls>
         <EffectComposer>
