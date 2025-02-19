@@ -73,7 +73,7 @@ export default function App() {
           </Text>
           <Text
             rotation={[0, Math.PI / 2, 0]}
-            position={[0.2, 1.35, -4.3]}
+            position={[0.2, 1.35, -4.5]}
             fontSize={0.3}
             font="./fonts/JetBrainsMono-ExtraBold.ttf">
             Skills
@@ -89,7 +89,7 @@ export default function App() {
           </Text>
           <Text
             rotation={[0, Math.PI, 0]}
-            position={[0.2, 1.2, -13.8]}
+            position={[0.03, 1.2, -13.8]}
             fontSize={0.3}
             font="./fonts/JetBrainsMono-ExtraBold.ttf">
             Contact Me
@@ -214,7 +214,7 @@ export default function App() {
           }}>
           Resume
         </button>
-        <button className="menuitems" onClick={() => setS({ s: 0.19, b: 1 })}>
+        <button className="menuitems" onClick={() => setS({ s: 0.185, b: 1 })}>
           Projects
         </button>
         <button className="menuitems" onClick={() => setS({ s: 0.38, b: 1 })}>
