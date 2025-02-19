@@ -5,10 +5,12 @@ import { Text } from "@react-three/drei";
 import { useState } from "react";
 import "./App.css";
 import Tube from "./pages/Tube";
+import { MeshTransmissionMaterial } from "@react-three/drei";
 
 export default function App() {
   //scroll contstant
   const [s, setS] = useState({ s: 0, b: 0 });
+  const [op, setOp] = useState(1);
   //Resume button colour
   const [resumecolour, setRc] = useState("#ffffff");
   //tube model credits
@@ -36,8 +38,44 @@ export default function App() {
           rotation={[0, 0, Math.PI]}
           intensity={1}
         />
+        <directionalLight
+          position={[0, 2, 0]}
+          rotation={[0, 0, 0]}
+          intensity={0.1}
+        />
         <ScrollControls pages={4} damping={0.2}>
+          <Text
+            rotation={[0, Math.PI / 2, 0]}
+            position={[-0.2, 1.5, 0.6]}
+            fontSize={0.3}
+            color={"red"}
+            font="./fonts/JetBrainsMono-ExtraBold.ttf">
+            Projects
+            <MeshTransmissionMaterial
+              anisotropy={1}
+              transmission={1}
+              thickness={0.1}
+              roughness={0.1}
+              distortion={0.1}
+              distortionScale={0.1}
+              chromaticAberration={0.1}
+              color="red"
+            />
+          </Text>
           <Tube s={s} />
+          <mesh position={[0, -2.1, -4.2]}>
+            <boxGeometry args={[4, 1, 19]} />
+            <MeshTransmissionMaterial
+              anisotropy={1}
+              transmission={1}
+              thickness={1}
+              roughness={0.1}
+              distortion={0.1}
+              distortionScale={0.1}
+              chromaticAberration={0.1}
+              color="white"
+            />
+          </mesh>
         </ScrollControls>
         <EffectComposer>
           <Bloom intensity={0.7} />
@@ -56,7 +94,7 @@ export default function App() {
           backgroundColor: "#001024",
           pointerEvents: "none",
         }}></div>
-      <div
+      {/*<div
         style={{
           position: "absolute",
           top: "30vh",
@@ -74,7 +112,7 @@ export default function App() {
           href="https://drive.google.com/file/d/1u3fPmkwKC03ZJMQS6BV5goDeWtKeTFfh/view?usp=sharing">
           Learn more about me.
         </a>
-      </div>
+      </div>*/}
       <div
         className="overlay"
         style={{
