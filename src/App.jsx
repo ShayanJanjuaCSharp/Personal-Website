@@ -98,13 +98,63 @@ export default function App() {
             <MeshTransmissionMaterial color={"yellow"} {...c} />
           </Text>*/}
           <Tube s={s} />
-          <mesh position={[0, -2.1, -4.2]}>
-            <boxGeometry args={[4, 1, 19]} />
-            <MeshPortalMaterial />
+          <mesh position={[1.3, 0, 0]} rotation={[0, Math.PI / 2, 0]}>
+            <planeGeometry args={[1.8, 2.3]} />
+            <Text
+              fontSize={0.2}
+              font="./fonts/JetBrainsMono-ExtraBold.ttf"
+              position={[0, 1, 0]}
+              color={"#000000"}>
+              Projects
+            </Text>
+            <MeshPortalMaterial>
+              <ambientLight intensity={0.1} />
+              <color attach="background" args={["#ffffff"]} />
+              <mesh position={[0, 0, -1]}>
+                <boxGeometry args={[1, 1]} />
+                <meshBasicMaterial color={"red"} />
+              </mesh>
+            </MeshPortalMaterial>
+          </mesh>
+          <mesh position={[1.3, 0, -5.1]} rotation={[0, Math.PI / 2, 0]}>
+            <planeGeometry args={[1.8, 2.3]} />
+            <Text
+              fontSize={0.2}
+              font="./fonts/JetBrainsMono-ExtraBold.ttf"
+              position={[0, 1, 0]}
+              color={"black"}>
+              Skills
+            </Text>
+            <MeshPortalMaterial>
+              <ambientLight intensity={0.1} />
+              <color attach="background" args={["#ffffff"]} />
+              <mesh position={[0, 0, -1]}>
+                <boxGeometry args={[1, 1]} />
+                <meshBasicMaterial color={"green"} />
+              </mesh>
+            </MeshPortalMaterial>
+          </mesh>
+          <mesh position={[1.3, 0, -10.4]} rotation={[0, Math.PI / 2, 0]}>
+            <planeGeometry args={[1.8, 2.3]} />
+            <Text
+              fontSize={0.2}
+              font="./fonts/JetBrainsMono-ExtraBold.ttf"
+              position={[0, 1, 0]}
+              color={"#000000"}>
+              Hobbies
+            </Text>
+            <MeshPortalMaterial>
+              <ambientLight intensity={0.1} />
+              <color attach="background" args={["#ffffff"]} />
+              <mesh position={[0, 0, -1]}>
+                <boxGeometry args={[1, 1]} />
+                <meshBasicMaterial color={"blue"} />
+              </mesh>
+            </MeshPortalMaterial>
           </mesh>
         </ScrollControls>
         <EffectComposer>
-          <Bloom intensity={0.7} />
+          <Bloom intensity={0.5} />
           <Noise opacity={0.13} />
         </EffectComposer>
       </Canvas>
