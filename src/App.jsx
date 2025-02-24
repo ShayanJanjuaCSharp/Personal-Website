@@ -9,6 +9,7 @@ import { MeshTransmissionMaterial } from "@react-three/drei";
 import { useControls } from "leva";
 import { attenuationDistance, clearcoat, color } from "three/tsl";
 import { MeshPortalMaterial } from "@react-three/drei";
+import Projects from "./pages/Projects";
 
 export default function App() {
   const c = {
@@ -98,24 +99,7 @@ export default function App() {
             <MeshTransmissionMaterial color={"yellow"} {...c} />
           </Text>*/}
           <Tube s={s} />
-          <mesh position={[1.3, 0, 0]} rotation={[0, Math.PI / 2, 0]}>
-            <planeGeometry args={[1.8, 2.3]} />
-            <Text
-              fontSize={0.2}
-              font="./fonts/JetBrainsMono-ExtraBold.ttf"
-              position={[0, 1, 0]}
-              color={"#000000"}>
-              Projects
-            </Text>
-            <MeshPortalMaterial>
-              <ambientLight intensity={0.1} />
-              <color attach="background" args={["#ffffff"]} />
-              <mesh position={[0, 0, -1]}>
-                <boxGeometry args={[1, 1]} />
-                <meshBasicMaterial color={"red"} />
-              </mesh>
-            </MeshPortalMaterial>
-          </mesh>
+          <Projects />
           <mesh position={[1.3, 0, -5.1]} rotation={[0, Math.PI / 2, 0]}>
             <planeGeometry args={[1.8, 2.3]} />
             <Text
