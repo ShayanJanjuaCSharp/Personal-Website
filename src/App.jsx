@@ -1,4 +1,4 @@
-import { Billboard, ScrollControls } from "@react-three/drei";
+import { Billboard, OrbitControls, ScrollControls } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
 import { Bloom, EffectComposer, Noise } from "@react-three/postprocessing";
 import { Text } from "@react-three/drei";
@@ -32,6 +32,7 @@ export default function App() {
   //scroll contstant
   const [s, setS] = useState({ s: 0, b: 0 });
   const [op, setOp] = useState(1);
+  const [oc, setOC] = useState(0);
   //Resume button colour
   const [resumecolour, setRc] = useState("#ffffff");
   //tube model credits
@@ -64,6 +65,7 @@ export default function App() {
           rotation={[0, 0, 0]}
           intensity={0.1}
         />
+        {oc ? <OrbitControls makeDefault /> : null}
         <ScrollControls pages={4} damping={0.2}>
           {/* USE PORTALS
           <Text
@@ -98,8 +100,8 @@ export default function App() {
             Contact Me
             <MeshTransmissionMaterial color={"yellow"} {...c} />
           </Text>*/}
-          <Tube s={s} />
-          <Projects />
+          <Tube s={s} oc={oc} />
+          <Projects oc={oc} setOC={setOC} />
           <mesh position={[1.3, 0, -5.1]} rotation={[0, Math.PI / 2, 0]}>
             <planeGeometry args={[1.8, 2.3]} />
             <Text
@@ -243,25 +245,37 @@ export default function App() {
           pointerEvents: "none",
           opacity: 0,
         }}>
-        <button
-          className="menuitems"
-          onClick={() => {
-            setS({ s: 0, b: 1 });
-          }}>
-          Resume
-        </button>
-        <button className="menuitems" onClick={() => setS({ s: 0.185, b: 1 })}>
-          Projects
-        </button>
-        <button className="menuitems" onClick={() => setS({ s: 0.38, b: 1 })}>
-          Skills
-        </button>
-        <button className="menuitems" onClick={() => setS({ s: 0.545, b: 1 })}>
-          Hobbies
-        </button>
-        <button className="menuitems" onClick={() => setS({ s: 1, b: 1 })}>
-          Contact
-        </button>
+        {oc ? (
+          <></>
+        ) : (
+          <>
+            <button
+              className="menuitems"
+              onClick={() => {
+                setS({ s: 0, b: 1 });
+              }}>
+              Resume
+            </button>
+            <button
+              className="menuitems"
+              onClick={() => setS({ s: 0.185, b: 1 })}>
+              Projects
+            </button>
+            <button
+              className="menuitems"
+              onClick={() => setS({ s: 0.38, b: 1 })}>
+              Skills
+            </button>
+            <button
+              className="menuitems"
+              onClick={() => setS({ s: 0.545, b: 1 })}>
+              Hobbies
+            </button>
+            <button className="menuitems" onClick={() => setS({ s: 1, b: 1 })}>
+              Contact
+            </button>
+          </>
+        )}
       </div>
       <div
         style={{
@@ -274,7 +288,7 @@ export default function App() {
           height: "7vh",
           bottom: "0",
           right: "0",
-          opacity: 1,
+          opacity: oc ? 0 : 1,
         }}>
         <p
           style={{

@@ -1,17 +1,20 @@
 import { MeshPortalMaterial } from "@react-three/drei";
 import { Text } from "@react-three/drei";
+import { useFrame } from "@react-three/fiber";
 import { useEffect, useState } from "react";
 import { useRef } from "react";
 import { Vector3 } from "three";
 
-export default function Projects() {
+export default function Projects(props) {
   const p = useRef();
+  const mat = useRef();
   const [active, setActive] = useState(false);
-  useEffect(() => {
-    if (active && p.current) {
-      let pos = new Vector3();
-      p.current.localToWorld(pos.set(0, 0, 0));
-      console.log(pos);
+  useFrame((state) => {
+    console.log(props.oc);
+    if (active) {
+      mat.current.blend = 1;
+      props.setOC(1);
+    } else {
     }
   });
   return (
@@ -31,7 +34,7 @@ export default function Projects() {
         color={"#000000"}>
         Projects
       </Text>
-      <MeshPortalMaterial>
+      <MeshPortalMaterial blend={0} ref={mat}>
         <ambientLight intensity={0.1} />
         <color attach="background" args={["#ffffff"]} />
         <mesh position={[0, 0, -1]}>
