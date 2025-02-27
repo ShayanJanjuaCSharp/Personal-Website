@@ -3,7 +3,7 @@
   text-align: center;
 }
 .reveal {
-  animation: rev 3s forwards 17s;
+  animation: rev 2s forwards 11s;
 }
 
 .name {
@@ -13,9 +13,9 @@
   width: 0%;
   white-space: nowrap;
   overflow: hidden;
-  animation: typingReverse 3s steps(19) forwards 1s,
-    typing 3s steps(19) forwards 6s, cursor 0.5s step-end alternate infinite,
-    stop 0.5s step-end forwards 9s;
+  animation: typingReverse 2s steps(19) forwards 1s,
+    typing 2s steps(19) forwards 4s, cursor 0.5s step-end alternate infinite,
+    stop 0.5s step-end forwards 6s;
   font-family: jbbold;
   line-height: 1em;
   color: #fffced;
@@ -26,19 +26,19 @@
   border-width: 0.01em;
   white-space: nowrap;
   overflow: hidden;
-  animation: typingReverse15 3s steps(3) forwards 9s,
-    cursor 0.5s step-end alternate infinite 9s, stop 0.5s step-end forwards 12s;
+  animation: typingReverse15 3s steps(3) forwards 6s,
+    cursor 0.5s step-end alternate infinite 6s, stop 0.5s step-end forwards 9s;
   font-family: jbbold;
   line-height: 1em;
   width: 0%;
   color: #fffced;
 }
 .move {
-  animation: topright 3s forwards 14s cubic-bezier(0.09, 0.85, 0.38, 0.98);
+  animation: topright 1s forwards 10s cubic-bezier(0.09, 0.85, 0.38, 0.98);
 }
 .menu {
   background-color: transparent;
-  animation: revealMenu 3s forwards 14s cubic-bezier(0.09, 0.85, 0.38, 0.98);
+  animation: revealMenu 1s forwards 10s cubic-bezier(0.09, 0.85, 0.38, 0.98);
 }
 .menuitems {
   background-color: #001024;

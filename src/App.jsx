@@ -9,6 +9,7 @@ import { MeshTransmissionMaterial } from "@react-three/drei";
 import { useControls } from "leva";
 import { attenuationDistance, clearcoat, color } from "three/tsl";
 import { MeshPortalMaterial } from "@react-three/drei";
+import Frame from "./pages/Frame";
 import Projects from "./pages/Projects";
 
 export default function App() {
@@ -101,7 +102,9 @@ export default function App() {
             <MeshTransmissionMaterial color={"yellow"} {...c} />
           </Text>*/}
           <Tube s={s} oc={oc} />
-          <Projects oc={oc} setOC={setOC} />
+          <Frame oc={oc} setOC={setOC} pos={[1.3, 0, 0]}>
+            <Projects />
+          </Frame>
           <mesh position={[1.3, 0, -5.1]} rotation={[0, Math.PI / 2, 0]}>
             <planeGeometry args={[1.8, 2.3]} />
             <Text
