@@ -113,7 +113,7 @@ export default function App() {
             </Text>
             <MeshPortalMaterial>
               <ambientLight intensity={0.1} />
-              <color attach="background" args={["#ffffff"]} />
+              <color attach="background" args={["#"]} />
               <mesh position={[0, 0, -1]}>
                 <boxGeometry args={[1, 1]} />
                 <meshBasicMaterial color={"green"} />
