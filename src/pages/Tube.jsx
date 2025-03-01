@@ -2,13 +2,13 @@ import { useScroll } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
 import { Gltf } from "@react-three/drei";
 
-export default function Tube(props) {
+export default function Tube({ s, b }) {
   const scroll = useScroll();
   useFrame((state, delta) => {
-    if (!props.oc) {
-      if (props.s.b == 1) {
-        scroll.el.scrollTop = scroll.el.scrollHeight * s.s.s;
-        props.s.b = 0;
+    if (b[3] == 0) {
+      if (s.b == 1) {
+        scroll.el.scrollTop = scroll.el.scrollHeight * s.s;
+        s.b = 0;
       }
       if (scroll.offset < 0.23) {
         let pc = scroll.offset / 0.23;

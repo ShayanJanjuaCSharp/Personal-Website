@@ -1,14 +1,12 @@
-import { Billboard, OrbitControls, ScrollControls } from "@react-three/drei";
+import { OrbitControls, ScrollControls } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
 import { Bloom, EffectComposer, Noise } from "@react-three/postprocessing";
 import { Text } from "@react-three/drei";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./App.css";
 import Tube from "./pages/Tube";
-import { MeshTransmissionMaterial } from "@react-three/drei";
-import { useControls } from "leva";
-import { attenuationDistance, clearcoat, color } from "three/tsl";
 import { MeshPortalMaterial } from "@react-three/drei";
+import { useLocation } from "wouter";
 import Frame from "./pages/Frame";
 import Projects from "./pages/Projects";
 
@@ -29,13 +27,11 @@ export default function App() {
     clearcoat: 1,
     attenuationDistance: 8.16,
   };
-
+  //blendstate
+  const [bVal, setB] = useState([0, 0, 0, 0]);
   //scroll contstant
   const [s, setS] = useState({ s: 0, b: 0 });
-  const [op, setOp] = useState(1);
   const [oc, setOC] = useState(0);
-  //Resume button colour
-  const [resumecolour, setRc] = useState("#ffffff");
   //tube model credits
   const tubeCredds =
     "<a href='https://skfb.ly/ossIt'>Bombardier S Stock London Underground</a> by timblewee is licensed under Creative Commons Attribution (http://creativecommons.org/licenses/by/4.0/).";
@@ -46,6 +42,14 @@ export default function App() {
     let newW = window.innerWidth / 1900;
     setwi(newW);
   });
+  //back reset
+  window.addEventListener("popstate", () => {
+    setB([0, 0, 0, 0]);
+    setOC(0);
+    setS({ s: 0, b: 1 });
+  });
+  //setLocation
+  const [, setLocation] = useLocation();
 
   return (
     <>
@@ -66,81 +70,36 @@ export default function App() {
           rotation={[0, 0, 0]}
           intensity={0.1}
         />
-        {oc ? <OrbitControls makeDefault /> : null}
         <ScrollControls pages={4} damping={0.2}>
-          {/* USE PORTALS
-          <Text
-            rotation={[0, Math.PI / 2, 0]}
-            position={[0.2, 1.35, 0.4]}
-            fontSize={0.3}
-            font="./fonts/JetBrainsMono-ExtraBold.ttf">
-            Projects
-            <MeshTransmissionMaterial color={"#ff000a"} {...c} />
-          </Text>
-          <Text
-            rotation={[0, Math.PI / 2, 0]}
-            position={[0.2, 1.35, -4.5]}
-            fontSize={0.3}
-            font="./fonts/JetBrainsMono-ExtraBold.ttf">
-            Skills
-            <MeshTransmissionMaterial color={"green"} {...c} />
-          </Text>
-          <Text
-            rotation={[0, Math.PI / 2, 0]}
-            position={[0.3, 1.35, -9.8]}
-            fontSize={0.3}
-            font="./fonts/JetBrainsMono-ExtraBold.ttf">
-            Hobbies
-            <MeshTransmissionMaterial color={"blue"} {...c} />
-          </Text>
-          <Text
-            rotation={[0, Math.PI, 0]}
-            position={[0.03, 1.2, -13.8]}
-            fontSize={0.3}
-            font="./fonts/JetBrainsMono-ExtraBold.ttf">
-            Contact Me
-            <MeshTransmissionMaterial color={"yellow"} {...c} />
-          </Text>*/}
-          <Tube s={s} oc={oc} />
-          <Frame oc={oc} setOC={setOC} pos={[1.3, 0, 0]}>
+          <Tube s={s} b={bVal} />
+          <Frame
+            pos={[1.25, 0, 0]}
+            txt={"Projects"}
+            local={"/Projects"}
+            b={bVal}
+            setB={setB}
+            id={0}>
             <Projects />
           </Frame>
-          <mesh position={[1.3, 0, -5.1]} rotation={[0, Math.PI / 2, 0]}>
-            <planeGeometry args={[1.8, 2.3]} />
-            <Text
-              fontSize={0.2}
-              font="./fonts/JetBrainsMono-ExtraBold.ttf"
-              position={[0, 1, 0]}
-              color={"black"}>
-              Skills
-            </Text>
-            <MeshPortalMaterial>
-              <ambientLight intensity={0.1} />
-              <color attach="background" args={["#"]} />
-              <mesh position={[0, 0, -1]}>
-                <boxGeometry args={[1, 1]} />
-                <meshBasicMaterial color={"green"} />
-              </mesh>
-            </MeshPortalMaterial>
-          </mesh>
-          <mesh position={[1.3, 0, -10.4]} rotation={[0, Math.PI / 2, 0]}>
-            <planeGeometry args={[1.8, 2.3]} />
-            <Text
-              fontSize={0.2}
-              font="./fonts/JetBrainsMono-ExtraBold.ttf"
-              position={[0, 1, 0]}
-              color={"#000000"}>
-              Hobbies
-            </Text>
-            <MeshPortalMaterial>
-              <ambientLight intensity={0.1} />
-              <color attach="background" args={["#ffffff"]} />
-              <mesh position={[0, 0, -1]}>
-                <boxGeometry args={[1, 1]} />
-                <meshBasicMaterial color={"blue"} />
-              </mesh>
-            </MeshPortalMaterial>
-          </mesh>
+          <Frame
+            pos={[1.25, 0, -5.1]}
+            txt={"Skills"}
+            local={"/Skills"}
+            b={bVal}
+            setB={setB}
+            id={1}>
+            <Projects />
+          </Frame>
+          <Frame
+            setOC={setOC}
+            pos={[1.25, 0, -10.4]}
+            txt={"Hobbies"}
+            local={"/Hobbies"}
+            b={bVal}
+            setB={setB}
+            id={2}>
+            <Projects />
+          </Frame>
         </ScrollControls>
         <EffectComposer>
           <Bloom intensity={0.5} />
@@ -318,3 +277,13 @@ export default function App() {
     </>
   );
 }
+
+/* USE PORTALS
+          <Text
+            rotation={[0, Math.PI / 2, 0]}
+            position={[0.2, 1.35, 0.4]}
+            fontSize={0.3}
+            font="./fonts/JetBrainsMono-ExtraBold.ttf">
+            Projects
+            <MeshTransmissionMaterial color={"#ff000a"} {...c} />
+          </Text>*/
