@@ -73,7 +73,7 @@ export default function App() {
         <ScrollControls pages={4} damping={0.2}>
           <Tube s={s} b={bVal} />
           <Frame
-            pos={[1.25, 0, 0]}
+            pos={[1.25, 2, 0]}
             txt={"Projects"}
             local={"/Projects"}
             b={bVal}
@@ -82,7 +82,7 @@ export default function App() {
             <Projects />
           </Frame>
           <Frame
-            pos={[1.25, 0, -5.1]}
+            pos={[1.25, 2, -5.1]}
             txt={"Skills"}
             local={"/Skills"}
             b={bVal}
@@ -92,7 +92,7 @@ export default function App() {
           </Frame>
           <Frame
             setOC={setOC}
-            pos={[1.25, 0, -10.4]}
+            pos={[1.25, 2, -10.4]}
             txt={"Hobbies"}
             local={"/Hobbies"}
             b={bVal}
@@ -250,7 +250,7 @@ export default function App() {
           height: "7vh",
           bottom: "0",
           right: "0",
-          opacity: oc ? 0 : 1,
+          opacity: bVal[3] ? 0 : 1,
         }}>
         <p
           style={{

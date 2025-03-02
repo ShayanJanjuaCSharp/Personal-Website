@@ -34,7 +34,13 @@ export default function Frame({ pos, txt, local, b, setB, id, children }) {
         newB[3] = 1;
         setB(newB);
       }}>
-      {b[id] ? <OrbitControls makeDefault /> : null}
+      {b[id] ? (
+        <OrbitControls
+          makeDefault
+          maxPolarAngle={Math.PI / 2.55}
+          enablePan={false}
+        />
+      ) : null}
       <planeGeometry args={[1.8, 2.3]} />
       <Text
         fontSize={0.2}
