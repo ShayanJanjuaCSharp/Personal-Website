@@ -11,9 +11,18 @@ export default function Projects(props) {
         files="https://dl.polyhaven.org/file/ph-assets/HDRIs/hdr/2k/evening_road_01_2k.hdr"
         ground={{ height: 5, radius: 40, scale: 20 }}
       />
-      <Gltf src={"./models/rx7.glb"} position={[-1.7, -2, -1.5]} scale={0.14} />
-      <Gltf src={"./models/mp1.glb"} position={[-0.6, -2, -1.5]} scale={0.29} />
-      <Gltf src={"./models/bc.glb"} position={[1.8, -2, -1.5]} scale={0.35} />
+      <Gltf src={"./models/ps1.glb"} position={[-1.7, -2, -1.5]} scale={0.4} />
+      <Gltf
+        src={"./models/1971.glb"}
+        position={[-0.6, -2, -1.5]}
+        scale={0.29}
+      />
+      <Gltf
+        src={"./models/atm.glb"}
+        position={[1.8, -2, -1.5]}
+        rotation={[0, Math.PI / 2, 0]}
+        scale={0.35}
+      />
     </>
   );
 }
