@@ -37,7 +37,7 @@ export default function Frame({ pos, txt, local, b, setB, id, children }) {
       {b[id] ? (
         <OrbitControls
           makeDefault
-          maxPolarAngle={Math.PI / 2.55}
+          maxPolarAngle={Math.PI / 2.1}
           enablePan={false}
         />
       ) : null}
